@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 775ed44178057ca41b38db7371b511db
-timeCreated: 1502911297
+timeCreated: 1503003170
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -44,8 +44,8 @@ ModelImporter:
     addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
