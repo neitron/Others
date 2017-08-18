@@ -139,9 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7402aa0fa82fe4ba96a902d43cafad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
   focus: {x: 0, y: 0, z: 0}
-  helth: 0
+  alias: Rapsule
+  health: 250
+  currentHealth: 0
   enemyInfo: {fileID: 0}
 --- !u!136 &136419616453132784
 CapsuleCollider:

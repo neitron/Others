@@ -8,24 +8,17 @@ public class CameraController : MonoBehaviour
 
 
     public Transform target;
-    public Transform center;
 
     public float pinch;
     public float currentZoom;
 
+    public Vector3 offset;
 
 
-    private void LateUpdate()
+
+    virtual public void LateUpdate()
     {
-        var targetPlainPos = Vector3.ProjectOnPlane(target.position, Vector3.up);
-        var centerPlainPos = Vector3.ProjectOnPlane(center.position, Vector3.up);
-        var cameraPlainPos = Vector3.ProjectOnPlane(transform.position, Vector3.up);
-        
-        var centerToTargetDir = (targetPlainPos - centerPlainPos).normalized;
-
-        transform.position = centerToTargetDir * currentZoom + targetPlainPos + Vector3.up * pinch;
-        transform.LookAt(centerPlainPos);
+        transform.position = target.position - offset * currentZoom + Vector3.up * 30;
+        transform.LookAt(target.position + Vector3.up * pinch);
     }
-
-
 }

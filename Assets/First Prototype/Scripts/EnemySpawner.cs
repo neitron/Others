@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     public EnemyCanvas canvas;
 
     public GameObject enemyOriginal;
-    public RectTransform enemyInfo;
+    public RectTransform enemyInfoOriginal;
     public Transform enemyFocus;
 
     public float delay;
@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Spawn());
+        DoNewWave();
     }
 
     private IEnumerator Spawn()
@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
             EnemyAI temp = Instantiate<GameObject>(enemyOriginal, pos, Quaternion.identity).GetComponent<EnemyAI>();
             temp.SetFocus(enemyFocus);
 
-            var rect = canvas.SpawnEnemyInfo(temp, enemyInfo);
+            var rect = canvas.SpawnEnemyInfo(temp, enemyInfoOriginal);
             temp.Init(rect);
 
             yield return wait;
@@ -52,5 +52,8 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 
-
+    public void DoNewWave()
+    {
+        StartCoroutine(Spawn());
+    }
 }

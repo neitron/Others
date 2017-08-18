@@ -9,23 +9,33 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour
 {
-    public NavMeshAgent agent;
+
     public Vector3 focus;
 
-    public float helth;
+    [Space(20), Header("Enemy info")]
+    public string alias;
+    public float health;
+    [HideInInspector]
+    public float currentHealth;
 
     [HideInInspector]
     public RectTransform enemyInfo;
+
+    private NavMeshAgent agent;
+
+
 
 	// Use this for initialization
 	void Awake ()
     {
         agent = GetComponent<NavMeshAgent>();
-	}
+        currentHealth = health;
+    }
 
     internal void Init(RectTransform enemyInfo)
     {
         this.enemyInfo = enemyInfo;
+        EnemyCanvas.instance.UpdateInfo(this, enemyInfo);
     }
 
     internal void SetFocus(Transform enemyFocus)
@@ -36,5 +46,14 @@ public class EnemyAI : MonoBehaviour
     public void Update()
     {
         EnemyCanvas.instance.UpdateInfoPos(this, enemyInfo);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            currentHealth -= UnityEngine.Random.Range(50, 55);
+            EnemyCanvas.instance.UpdateInfo(this, enemyInfo);
+        }
     }
 }
