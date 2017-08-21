@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
 
     virtual public void LateUpdate()
     {
-        transform.position = target.position - offset * currentZoom + Vector3.up * 30;
+        transform.position = target.position - offset * currentZoom;
         transform.LookAt(target.position + Vector3.up * pinch);
     }
 }

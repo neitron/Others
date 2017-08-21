@@ -18,12 +18,14 @@ public class EnemySpawner : MonoBehaviour
 
     public float delay;
     public int amount;
+    
 
 
     private void Start()
     {
         DoNewWave();
     }
+
 
     private IEnumerator Spawn()
     {
@@ -46,14 +48,19 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+
+    public void DoNewWave()
+    {
+        StartCoroutine(Spawn());
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 
-    public void DoNewWave()
-    {
-        StartCoroutine(Spawn());
-    }
+
+
 }

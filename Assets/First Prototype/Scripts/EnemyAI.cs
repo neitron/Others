@@ -48,12 +48,20 @@ public class EnemyAI : MonoBehaviour
         EnemyCanvas.instance.UpdateInfoPos(this, enemyInfo);
     }
 
+    public void HitEnemy(int damage)
+    {
+        currentHealth -= damage;
+        EnemyCanvas.instance.UpdateInfo(this, enemyInfo);
+
+        if(currentHealth <= 0)
+        {
+            Destroy(enemyInfo.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
-        {
-            currentHealth -= UnityEngine.Random.Range(50, 55);
-            EnemyCanvas.instance.UpdateInfo(this, enemyInfo);
-        }
+        Debug.Log("Collision detected");
     }
 }
