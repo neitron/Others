@@ -39,6 +39,7 @@ public class EnemySpawner : MonoBehaviour
             pos.z += Random.Range(-radius, radius);
 
             EnemyAI temp = Instantiate<GameObject>(enemyOriginal, pos, Quaternion.identity).GetComponent<EnemyAI>();
+            temp.gameObject.GetComponentInChildren<MeshRenderer>().material.SetColor("_Color", Random.ColorHSV());
             temp.SetFocus(enemyFocus);
 
             var rect = canvas.SpawnEnemyInfo(temp, enemyInfoOriginal);
