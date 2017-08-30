@@ -1,4 +1,6 @@
-## Welcome to GitHub Pages
+## Others - defend your tower
+
+It's a game project for mobile devices (iOs, Android).
 
 You can use the [editor on GitHub](https://github.com/neitron/Others/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
