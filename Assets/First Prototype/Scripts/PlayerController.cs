@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,12 +24,34 @@ public class PlayerController : MonoBehaviour
     {
         cam = Camera.main;
         motor = GetComponent<PlayerMotor>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
+
+        GameObject.Find("Joy Pad").GetComponent<JoyPad>().OnJoysticDrag += onJoystickDrag;
+        GameObject.Find("Joy Pad").GetComponent<JoyPad>().OnJoysticRelease += onJoystickRelease;
+    }
+
+    bool isJoy = false;
+    private void onJoystickRelease()
     {
-        
+        isJoy = false;
+    }
+
+
+    private void onJoystickDrag(Vector2 dir)
+    {
+        isJoy = true;
+        var newDir = new Vector3(dir.x, 0.0f, dir.y);
+        motor.MoveToPoint(transform.position + newDir * dir.magnitude);
+    }
+
+
+    // Update is called once per frame
+    void Update ()
+    {
+        if(isJoy)
+        {
+            return;
+        }
+
         if(Application.platform == RuntimePlatform.Android)
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
