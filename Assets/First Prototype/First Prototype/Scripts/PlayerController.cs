@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
 {
+
+
     const int RMB = 1;
 
     public LayerMask groundMask;
@@ -18,40 +21,20 @@ public class PlayerController : MonoBehaviour
     public int coinAmount;
     Camera cam;
     PlayerMotor motor;
+    JoyPadInputHandler joypad;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         cam = Camera.main;
         motor = GetComponent<PlayerMotor>();
-
-        GameObject.Find("Joy Pad").GetComponent<JoyPad>().OnJoysticDrag += onJoystickDrag;
-        GameObject.Find("Joy Pad").GetComponent<JoyPad>().OnJoysticRelease += onJoystickRelease;
-    }
-
-    bool isJoy = false;
-    private void onJoystickRelease()
-    {
-        isJoy = false;
-    }
-
-
-    private void onJoystickDrag(Vector2 dir)
-    {
-        isJoy = true;
-        var newDir = new Vector3(dir.x, 0.0f, dir.y);
-        motor.MoveToPoint(transform.position + newDir * dir.magnitude);
+        joypad = GameObject.Find("Joy Pad").GetComponent<JoyPadInputHandler>();
     }
 
 
     // Update is called once per frame
     void Update ()
     {
-        if(isJoy)
-        {
-            return;
-        }
-
         if(Application.platform == RuntimePlatform.Android)
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -63,7 +46,11 @@ public class PlayerController : MonoBehaviour
         {
             OnRMB();
         }
+
+        ICommand command = joypad.HandleInput();
+        command.Execute(this);
 	}
+
 
     private void OnRMB()
     {
@@ -90,6 +77,14 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    
+    public void Run(Vector2 dir)
+    {
+        var newDir = new Vector3(dir.x, 0.0f, dir.y);
+        motor.MoveToPoint(transform.position + newDir * dir.magnitude);
+    }
+
 
     private void OnDrawGizmos()
     {
