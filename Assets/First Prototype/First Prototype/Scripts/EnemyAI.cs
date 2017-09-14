@@ -13,10 +13,11 @@ public class EnemyAI : MonoBehaviour
     public Vector3 focus;
 
     [Space(20), Header("Enemy info")]
-    public string alias;
-    public float health;
+    //public string alias;
+    //public float health;
     [HideInInspector]
     public float currentHealth;
+    public float health;
 
     [HideInInspector]
     public RectTransform enemyInfo;
@@ -29,7 +30,6 @@ public class EnemyAI : MonoBehaviour
 	void Awake ()
     {
         agent = GetComponent<NavMeshAgent>();
-        currentHealth = health;
     }
 
     internal void Init(RectTransform enemyInfo)

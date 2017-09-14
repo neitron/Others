@@ -9,7 +9,7 @@ public class JoyPadInputHandler : MonoBehaviour
 
     private JoyPad joypad;
     private NoCommand noCommande;
-
+    
 
 
     public void Start()

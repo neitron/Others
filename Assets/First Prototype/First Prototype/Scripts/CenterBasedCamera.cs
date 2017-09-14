@@ -14,7 +14,7 @@ public class CenterBasedCamera : CameraController
     {
         var targetPlainPos = Vector3.ProjectOnPlane(target.position, Vector3.up);
         var centerPlainPos = Vector3.ProjectOnPlane(center.position, Vector3.up);
-        var cameraPlainPos = Vector3.ProjectOnPlane(transform.position, Vector3.up);
+        //var cameraPlainPos = Vector3.ProjectOnPlane(transform.position, Vector3.up);
 
         var centerToTargetDir = (targetPlainPos - centerPlainPos).normalized;
 

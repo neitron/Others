@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
 
     public EnemyCanvas canvas;
 
-    public GameObject enemyOriginal;
+    public List<Enemy> enemies;
     public RectTransform enemyInfoOriginal;
     public Transform enemyFocus;
 
@@ -38,11 +38,15 @@ public class EnemySpawner : MonoBehaviour
             pos.y += Random.Range(-radius, radius);
             pos.z += Random.Range(-radius, radius);
 
-            EnemyAI temp = Instantiate<GameObject>(enemyOriginal, pos, Quaternion.identity).GetComponent<EnemyAI>();
-            temp.gameObject.GetComponentInChildren<MeshRenderer>().material.SetColor("_Color", Random.ColorHSV());
-            temp.SetFocus(enemyFocus);
+            var enemyType = Random.Range(0, 2);
 
-            var rect = canvas.SpawnEnemyInfo(temp, enemyInfoOriginal);
+            EnemyAI temp = Instantiate<GameObject>(enemies[enemyType].prefab, pos, Quaternion.identity).GetComponent<EnemyAI>();
+            temp.gameObject.GetComponentInChildren<MeshRenderer>().material.SetColor("_Color", enemies[enemyType].colorIsRandom ? Random.ColorHSV() : enemies[enemyType].tintColor);
+            temp.SetFocus(enemyFocus);
+            temp.currentHealth = enemies[enemyType].health;
+            temp.health = enemies[enemyType].health;
+
+            var rect = canvas.SpawnEnemyInfo(temp, enemies[enemyType], enemyInfoOriginal);
             temp.Init(rect);
 
             yield return wait;

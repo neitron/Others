@@ -17,13 +17,15 @@ public class EnemyCanvas : MonoBehaviour
         }
 	}
 
-    internal RectTransform SpawnEnemyInfo(EnemyAI enemy, RectTransform enemyInfoOriginal)
+    internal RectTransform SpawnEnemyInfo(EnemyAI enemyAI, Enemy enemy, RectTransform enemyInfoOriginal)
     {
-        var pos = Camera.main.WorldToScreenPoint(enemy.gameObject.transform.position);
+        var pos = Camera.main.WorldToScreenPoint(enemyAI.gameObject.transform.position);
 
         var enemyInfo = Instantiate<RectTransform>(enemyInfoOriginal, pos, Quaternion.identity, this.transform);
 
-        enemyInfo.Find("Name").GetComponent<Text>().text = enemy.alias;
+        enemyInfo.Find("Name").GetComponent<Text>().text = enemy.name;
+
+        enemyInfo.Find("Health Bar").GetComponent<RectTransform>().localScale = new Vector3(enemy.health / 250, 1.0f,1.0f);
 
         return enemyInfo;
     }

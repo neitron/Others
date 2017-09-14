@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449db6a0711622741b5b6e8731ab71b2, type: 3}
+  m_Name: Riku
+  m_EditorClassIdentifier: 
+  objectName: Riku Bos
+  prefab: {fileID: 1659288504913928, guid: a20cc4b4fd584dc4498d22750ee92011, type: 2}
+  colorIsRandom: 0
+  tintColor: {r: 1, g: 1, b: 1, a: 1}
+  health: 300
