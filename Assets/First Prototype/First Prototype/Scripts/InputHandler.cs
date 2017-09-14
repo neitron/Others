@@ -1,21 +1,16 @@
-﻿using UnityEngine;
-
-
-
-[RequireComponent(typeof(JoyPad))]
-public class JoyPadInputHandler : MonoBehaviour
+﻿
+public class InputHandler
 {
 
 
     private JoyPad joypad;
     private NoCommand noCommande;
-    
+   
 
 
-    public void Start()
+    public InputHandler(JoyPad joypad)
     {
-        joypad = GetComponent<JoyPad>();
-        
+        this.joypad = joypad;
         noCommande = new NoCommand();
     }
 

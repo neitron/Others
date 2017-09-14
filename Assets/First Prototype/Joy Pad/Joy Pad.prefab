@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 223070206027722444}
   - component: {fileID: 114666704094738188}
   - component: {fileID: 114532533012119694}
-  - component: {fileID: 114073398068777706}
   m_Layer: 5
   m_Name: Joy Pad
   m_TagString: Untagged
@@ -65,17 +64,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114073398068777706
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1105582625590992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dea209201ed23a645877d3cb4649e76c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114256904269383334
 MonoBehaviour:
   m_ObjectHideFlags: 1
