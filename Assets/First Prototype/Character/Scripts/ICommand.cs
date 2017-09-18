@@ -3,7 +3,7 @@ public interface ICommand
 {
 
 
-    void Execute(PlayerController motor);
+    void Execute(PlayerController player);
 
 
 }

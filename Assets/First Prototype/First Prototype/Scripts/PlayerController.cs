@@ -39,6 +39,16 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.LogFormat("Enter collision with : {0}", collision.collider.tag);
+        if (collision.collider.gameObject.tag == "Coin")
+        {
+            GameObject.Destroy(collision.collider.gameObject);
+        }
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
