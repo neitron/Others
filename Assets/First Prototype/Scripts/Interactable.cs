@@ -2,8 +2,21 @@
 
 
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
 
-	
+
+    public float radius = 3.0f;
+
+
+    public abstract void Interact(GameObject actor);
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(this.transform.position, radius);
+    }
+
+
 }

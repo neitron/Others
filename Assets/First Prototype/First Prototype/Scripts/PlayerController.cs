@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
@@ -16,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     PlayerMotor motor;
     InputHandler inputHandler;
+
+    public int moneyAmount { get; protected set; }
 
 
 
@@ -39,12 +40,22 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    internal void EarnCoin(int currencyCost)
+    {
+        Debug.Log("Just war erned: " + currencyCost);
+        moneyAmount += currencyCost;
+
+        // TODO: temp code. Remove it
+        GameObject.Find("Money Amount").GetComponent<Text>().text = moneyAmount.ToString();
+    }
+
+    
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.LogFormat("Enter collision with : {0}", collision.collider.tag);
-        if (collision.collider.gameObject.tag == "Coin")
+        Interactable interactable = collision.collider.GetComponent<Interactable>();
+        if (interactable != null)
         {
-            GameObject.Destroy(collision.collider.gameObject);
+            interactable.Interact(this.gameObject);
         }
     }
 
