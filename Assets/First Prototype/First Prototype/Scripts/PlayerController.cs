@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         Interactable interactable = collision.collider.GetComponent<Interactable>();
         if (interactable != null)
         {
-            interactable.Interact(this.gameObject);
+            interactable.Interact(this);
         }
     }
 

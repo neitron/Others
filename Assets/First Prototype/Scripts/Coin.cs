@@ -22,14 +22,10 @@ public class Coin : Interactable
     }
 
 
-    public override void Interact(GameObject actor)
+    public override void Interact(PlayerController actor)
     {
-        PlayerController player = actor.GetComponent<PlayerController>();
-        if(player != null)
-        {
-            player.EarnCoin(currencyCost);
-            GameObject.Destroy(this.gameObject);
-        }
+        actor.EarnCoin(currencyCost);
+        GameObject.Destroy(this.gameObject);
     }
 
 
