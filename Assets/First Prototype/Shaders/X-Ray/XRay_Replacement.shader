@@ -46,7 +46,8 @@
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.normal = normalize( mul( transpose( unity_WorldToObject ), v.normal ) );
+				float3x3 m = transpose(unity_WorldToObject);
+				o.normal = normalize( mul( m, v.normal ) );
 				o.viewDir = normalize( _WorldSpaceCameraPos.xyz - mul( unity_ObjectToWorld, v.vertex ).xyz );
 				return o;
 			}
